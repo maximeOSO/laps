@@ -1,6 +1,6 @@
 function [tsFMT, tsvrai]  = ADV_tsfromstokesfiles(PSD, TI, TF, restime,typedate)
-%%% Fait une serie temporelle des fichiers necessaires a la simulation a
-%%% partir des TI et TF de simul et des noms de fichier.
+%%% Makes a time series of the Stokes drift files needed 
+%%% for the simulation (use TI, TF and the files names)
 
 % the full time series of SD as online
 time_first_StDr = [1992 01 01 0 0 0];

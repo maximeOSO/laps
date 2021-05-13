@@ -12,7 +12,7 @@ clc
 
 dateECCO2 = '20180103'  % can be any date in the name of your ECCO2 files
 path2ecco2 = '/your/path/to/ECCO2/'
-path2stokesdrift = '/your/path/to/STOKESDRIFT/'
+path2stokesdrift = '/your/path/to/Sokesdrift/'
 path2gridfitdir = '/your/path/to/gridfitdir'
 year_to_convert = [2015 2018 2019]  % example [2010 2011 2014], the code will run over all months (1:12). If you only need some months, then adjust the jj variable (second for-loop below)
 addpath(path2gridfitdir) 
@@ -21,7 +21,6 @@ addpath(path2gridfitdir)
 ecU = [path2ecco2, 'UVEL.1440x720x50.',dateECCO2,'.nc'];
 ecV = [path2ecco2, 'VVEL.1440x720x50.',dateECCO2,'.nc'];
 ecW = [path2ecco2, 'WVEL.1440x720x50.',dateECCO2,'.nc'];
-%ncdisp(ec);
 elat = double(ncread(ecU,'LATITUDE_T'));
 elon = double(ncread(ecU,'LONGITUDE_T'));
 eums = double(ncread(ecU,'UVEL'));
@@ -35,6 +34,7 @@ eresll = elon(2)-elon(1);
 edgeselat = min(elat)-eresll/2:eresll:max(elat)+eresll/2;
 edgeselon = min(elon)-eresll/2:eresll:max(elon)+eresll/2;
 [ELAT, ELON] = meshgrid(elat,elon);
+
 %% SD
 for ii = year_to_convert
     for jj = 1:12
@@ -48,16 +48,16 @@ for ii = year_to_convert
         edgesslon = min(slon)-sresll/2:sresll:max(slon)+sresll/2;
         [SLAT, SLON] = meshgrid(slat,slon);
         %% SD -180:180 --> 0:360
-        % attention au bord 360: le repeter pour bien faire le tour du
-        % globe, sinon il y aura des NAN dans l'interp a 0.25 degre
+        % Attention at 360, make an overlap on that border (double the last line) or 
+        % the spatial interpolation will return NAN there
         ui = find(slon(slon<0),1,'first');
         uf = find(slon(slon<0),1,'last');
         % UUSS
-        sumsNEG = cat(1,sums(ui:uf,:,:),sums(uf,:,:)); % double uf a la fin pour boucler sur le globe
+        sumsNEG = cat(1,sums(ui:uf,:,:),sums(uf,:,:)); % double the last line to make an overlap at 360
         sumsPOS = sums(uf+1:end,:,:);
         sums360 = cat(1,sumsPOS,sumsNEG);
         % VUSS
-        svmsNEG = cat(1,svms(ui:uf,:,:),svms(uf,:,:)); % double uf a la fin pour boucler sur le globe
+        svmsNEG = cat(1,svms(ui:uf,:,:),svms(uf,:,:)); % double the last line to make an overlap at 360
         svmsPOS = svms(uf+1:end,:,:);
         svms360 = cat(1,svmsPOS,svmsNEG);
         % new coord
@@ -69,18 +69,18 @@ for ii = year_to_convert
         SD_V = zeros(length(elon),length(elat),size(sums360,3));
         for kk = 1:size(sums360,3)
             disp([num2str(ii),'-',num2str(jj,'%02d'),'-',num2str(kk,'%03d'),'/',num2str(size(sums360,3))])
-            sums1 = squeeze(sums360(:,:,kk)); % sur le 200 eme pas de temps
+            sums1 = squeeze(sums360(:,:,kk));
             sums1R = interp2(SLAT360,SLON360,sums1,ELAT,ELON);
-            svms1 = squeeze(svms360(:,:,kk)); % sur le 200 eme pas de temps
+            svms1 = squeeze(svms360(:,:,kk));
             svms1R = interp2(SLAT360,SLON360,svms1,ELAT,ELON);
-            %% les cotes a remplir
-            % on extrapole partout et ne gardera que les valeurs utiles
+            %% Coast needs extrapolation
+            % extrapolate everywhere
             all_extrap_U = gridfit(ELON,ELAT,sums1R,elon,elat);
             all_extrap_V = gridfit(ELON,ELAT,svms1R,elon,elat);
-            % remet au fornmat sums1R
+            % reformat at sums1R
             all_extrap_U = all_extrap_U';
             all_extrap_V = all_extrap_V';
-            % on garde les valeurs extrapolees seulement pour ue_fill
+            % keep extrapolated values only on ue_fill
             sel_extrap_U = all_extrap_U(island1(ue_fill));
             sums1R(island1(ue_fill)) = sel_extrap_U;
             sel_extrap_V = all_extrap_V(island1(ue_fill));
@@ -92,7 +92,7 @@ for ii = year_to_convert
 
         sf = 1e-4;
         fv = -32767;
-        disp([path2stokesdrift, 'fmt_SD_',num2str(ii*100+jj),'_1440x720xtime3h.nc'])
+        disp([path2stokesdrift, '/fmt_SD_',num2str(ii*100+jj),'_1440x720xtime3h.nc'])
         ncid = netcdf.create([path2stokesdrift, '/fmt_SD_',num2str(ii*100+jj),'_1440x720xtime3h.nc'],'NETCDF4');
         londimid = netcdf.defDim(ncid,'lon',size(SD_U,1));
         latdimid = netcdf.defDim(ncid,'lat',size(SD_V,2));
