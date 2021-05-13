@@ -1,6 +1,6 @@
 function [tsFMT, tsvrai]  = ADV_tsfromecco2files(PECCO2, TI, TF, typedate)
-%%% Fait une serie temporelle des fichiers necessaires a la simulation a
-%%% partir des TI et TF de simul et des noms de fichier.
+%%% Makes a time series of the ECCO2 files needed 
+%%% for the simulation (use TI, TF and the files names)
 
 % the full time series of ECCO2 as online
 time_first_ecco2 = [1992 01 02 0 0 0];
@@ -29,23 +29,13 @@ Wecco2user = datenum([str2num(Wfn1(:,18:21)) str2num(Wfn1(:,22:23)) ...
     zeros(size(Wfn1,1),1) zeros(size(Wfn1,1),1)]);
 
 % the needed time series
-%tneed = datenum(TI):restimeecco2:datenum(TF)  !!! FAUX, ca peut zapper un
-%temps de calcul si le delta TI/TF n'est pas divisble par restimeecco2
 tneed = datenum(TI):datenum(TF);
 tsvrai = tneed;
 
 [~,udtECCO2] = histc(tneed,ecco2full); % the files needed
-udtECCO2 = unique(udtECCO2); % elimine les multiples (3 dates peuvent avoir le meme indice)
+udtECCO2 = unique(udtECCO2); % remove multiples (3 dates can have the same index)
 
 if strcmpi(typedate,'CHK') == 1
-    % Check
-    %     datesn = [];
-    %     disp('ECCO2 U, V and W components are needed on dates:')
-    %     for kk = 1:length(udtECCO2)
-    %     datesn = [datesn, datestr(ecco2full(udtECCO2(kk)),'yyyymmdd'), ' '];
-    %     end
-    %     disp(datesn)
-    % disp(['Checking if all needed ECCO2 files are in ', PECCO2, ' ...'])
     m = 0;
     for KK= 1:length(udtECCO2)
         if isempty(find(Uecco2user == ecco2full(udtECCO2(KK))))
@@ -65,7 +55,7 @@ if strcmpi(typedate,'CHK') == 1
     if m>0
         disp('************** ')
         disp(['ERROR: ', num2str(m),' velocity files are missing in ', PECCO2])
-        disp('Get them here --> ftp://ecco.jpl.nasa.gov/ECCO2/cube92_latlon_quart_90S90N/')
+        disp('Get them here --> https://ecco.jpl.nasa.gov/drive/files/ECCO2/cube92_latlon_quart_90S90N/')
         disp('************** ')
         return
     elseif m ==0 && strcmpi(typedate,'CHK') == 1
