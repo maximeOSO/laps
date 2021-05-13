@@ -1,5 +1,8 @@
 # Laps
 
+LAPS stands for and is a simple way to simulate the trajectories of particlesat sea.
+It runs on Matlab. Any operating system should work fine as soon as you setup the path correctly, that is ``` /path/to/folder/ ``` for Linux and ``` C:\path\to\folder\ ``` for Widows 
+
 1. Put all the Matlab files (.m, .mat) in the same directory.
 2. Set this directory as your working directory in Matlab.
 3. Edit your configuration file, one line per keyword (see keywords meanings and the example configuration file).
@@ -20,12 +23,14 @@ STOKESDRIFT 	|Activate Stokes drift (wave action <-- wind): 0 or 1
 MODE            |Advection of sediment particles (=SED) or micro plastic debris (=MPD)
 
 Depending on the mode chosen, only the relevant parameters are used
-### If MOD is SED:
+
+If MODE is SED:
 Keyword | Description
 ------------ | -------------
 GRZ             |Particle size [m]
 RHOP            |Particle density in [kg.m-3]
-### If MOD is MPD:
+
+If MODE is MPD:
 Keyword | Description
 ------------ | -------------
 PVSINK          |The settling velocity of MDP (complicated to know, default value: 0.016 m.s-1 according to a bunch of papers: https://iopscience.iop.org/article/10.1088/1748-9326/aa8e8b/meta (mainly) https://www.sciencedirect.com/science/article/pii/S0269749116300264?via%3Dihub
@@ -38,10 +43,10 @@ PPSINK          |The probability [0=<p<=1] that the MDP older than AGES actually
 TI 2018-01-03
 TSI 2018-01-15
 TF 2018-01-31
-PECCO2                  /home/maxime/Work/ECCO2/
-INPUTF                  /home/maxime/Work/advection/input/test_label.xyz
-OUTPUTP                 /home/maxime/Work/advection/res/
-PSD                     /home/maxime/Work/Stokesdrift/
+PECCO2                  /path/to/ECCO2/           # or C:\path\to\ECCO2\          for Windows 
+INPUTF                  /path/to/input.xyz        # or C:\path\to\input.xyz       for Windows
+OUTPUTP                 /path/to/result/folder/   # or C:\path\to\result\folder\  for Windows
+PSD                     /path/to/Stokesdrift/     # or C:\path\to\Stokesdrift\    for Windows
 TRK                     24
 STOKESDRIFT             1
 MODE                    MPD
