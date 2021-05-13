@@ -11,16 +11,16 @@ clc
 % https://se.mathworks.com/matlabcentral/fileexchange/8998-surface-fitting-using-gridfit
 
 dateECCO2 = '20180103'  % can be any date in the name of your ECCO2 files
-path2ecco2 = '/data1/maxime/ECCO2'
-path2stokesdrift = '/data1/maxime/WWIII'
+path2ecco2 = '/your/path/to/ECCO2/'
+path2stokesdrift = '/your/path/to/STOKESDRIFT/'
 path2gridfitdir = '/your/path/to/gridfitdir'
 year_to_convert = [2015 2018 2019]  % example [2010 2011 2014], the code will run over all months (1:12). If you only need some months, then adjust the jj variable (second for-loop below)
 addpath(path2gridfitdir) 
 
 %% ECCO2
-ecU = [path2ecco2, '/UVEL.1440x720x50.',dateECCO2,'.nc'];
-ecV = [path2ecco2, '/VVEL.1440x720x50.',dateECCO2,'.nc'];
-ecW = [path2ecco2, '/WVEL.1440x720x50.',dateECCO2,'.nc'];
+ecU = [path2ecco2, 'UVEL.1440x720x50.',dateECCO2,'.nc'];
+ecV = [path2ecco2, 'VVEL.1440x720x50.',dateECCO2,'.nc'];
+ecW = [path2ecco2, 'WVEL.1440x720x50.',dateECCO2,'.nc'];
 %ncdisp(ec);
 elat = double(ncread(ecU,'LATITUDE_T'));
 elon = double(ncread(ecU,'LONGITUDE_T'));
@@ -38,7 +38,7 @@ edgeselon = min(elon)-eresll/2:eresll:max(elon)+eresll/2;
 %% SD
 for ii = year_to_convert
     for jj = 1:12
-        sd = [path2stokesdrift, '/WW3-GLOB-30M_',num2str(ii*100+jj),'_uss.nc'];
+        sd = [path2stokesdrift, 'WW3-GLOB-30M_',num2str(ii*100+jj),'_uss.nc'];
         slat = double(ncread(sd,'latitude'));
         slon = double(ncread(sd,'longitude'));
         sums = double(ncread(sd,'uuss'));
@@ -92,7 +92,7 @@ for ii = year_to_convert
 
         sf = 1e-4;
         fv = -32767;
-        disp([path2stokesdrift, '/fmt_SD_',num2str(ii*100+jj),'_1440x720xtime3h.nc'])
+        disp([path2stokesdrift, 'fmt_SD_',num2str(ii*100+jj),'_1440x720xtime3h.nc'])
         ncid = netcdf.create([path2stokesdrift, '/fmt_SD_',num2str(ii*100+jj),'_1440x720xtime3h.nc'],'NETCDF4');
         londimid = netcdf.defDim(ncid,'lon',size(SD_U,1));
         latdimid = netcdf.defDim(ncid,'lat',size(SD_V,2));
