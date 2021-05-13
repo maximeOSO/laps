@@ -12,7 +12,7 @@ clc
 
 dateECCO2 = '20180103'  % can be any date in the name of your ECCO2 files
 path2ecco2 = '/your/path/to/ECCO2/'
-path2stokesdrift = '/your/path/to/Sokesdrift/'
+path2stokesdrift = '/your/path/to/Stokesdrift/'
 path2gridfitdir = '/your/path/to/gridfitdir'
 year_to_convert = [2015 2018 2019]  % example [2010 2011 2014], the code will run over all months (1:12). If you only need some months, then adjust the jj variable (second for-loop below)
 addpath(path2gridfitdir) 
