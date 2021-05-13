@@ -7,14 +7,20 @@ clc
 % This function transform the netcdf files of the Stokes drift velocity
 % fields into netcdf files at the same format and spatial resolution of the
 % ECCO2 files.
-% it requires the gridfit package that must be downloaded here:
-% https://se.mathworks.com/matlabcentral/fileexchange/8998-surface-fitting-using-gridfit
 
+% !!!! IMPORTANT !!!!
+% Requires the GRIDFIT package that must be downloaded here:
+% https://se.mathworks.com/matlabcentral/fileexchange/8998-surface-fitting-using-gridfit
+% Reference to GRIDFIT: John D'Errico (2021). Surface Fitting using gridfit (https://www.mathworks.com/matlabcentral/fileexchange/8998-surface-fitting-using-gridfit), MATLAB Central File Exchange. Retrieved May 13, 2021.
+
+% This must be edited by you ---------------------------------------------- % 
 dateECCO2 = '20180103'  % can be any date in the name of your ECCO2 files
 path2ecco2 = '/your/path/to/ECCO2/'
 path2stokesdrift = '/your/path/to/Stokesdrift/'
 path2gridfitdir = '/your/path/to/gridfitdir'
-year_to_convert = [2015 2018 2019]  % example [2010 2011 2014], the code will run over all months (1:12). If you only need some months, then adjust the jj variable (second for-loop below)
+year_to_convert = [year1 year2]  % example [2010 2011 2014], the code will run over all months (1:12). If you only need some months, then adjust the jj variable (second for-loop below)
+% End of what must be edited by you --------------------------------------- % 
+
 addpath(path2gridfitdir) 
 
 %% ECCO2
