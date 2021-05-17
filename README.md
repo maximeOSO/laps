@@ -1,5 +1,5 @@
 # Laps
-LAPS stands for Langrangian Advection of Particles at Sea and is a Matlab script that simulates the trajectories of particlesat sea. It runs on any operating system. Use paths ``` /path/to/folder/ ``` for Linux/Mac and ``` C:\path\to\folder\ ``` for Windows.
+LAPS stands for Langrangian Advection of Particles at Sea. LAPS simulates the trajectories of particlesat sea and is programmed with Matlab. It runs on any operating system. Use paths ``` /path/to/folder/ ``` for Linux/Mac and ``` C:\path\to\folder\ ``` for Windows. In it's most basic form, the only script to use is ```ADV_main('your_config_file.txt')```.
 
 1. Get this Github repository.
 2. Set it as your working directory in Matlab.
