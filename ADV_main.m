@@ -1,20 +1,7 @@
 function ADV_main(configfile)
-%%% Simulation du transport de particules dans l'ocean avec modele ECCO2 et
-%%% settling velocity fonction de la taille de particule.
+%%% Main function of the LAPS program
 
-%%% INPUT:
-%%% - path to ECCO2 files: U, V, W all in the same folder
-%%% - TI: Advection and Injection START
-%%% - TSI: Injection STOP
-%%% - TF: Advection STOP
-%%% - Particle input: X, Y, Z(def = 0)
-%%% - SV: settling velocity (Stokes approx - particle sinks?): YES/NO
-%%% - GRZ: Grain Size in m
-%%% - RHOP: Particle density in kg/m3
-%%% - TRK: Want a track file (particle postion at each step): YES/NO
-%%% - RESINJ: Injection time step, in days (so 1hr = 1/24)
-%%% - PSD: path to Stokes Drift files
-%%% - STOKESDRIFT: Activate Stokes drift (wave action)
+%%% INPUT: see configfile
 
 %%% OUTPUT:
 %%% - adv_grd: full path to the matrix formatted data:
@@ -46,14 +33,6 @@ else
 end
 
 copyfile(configfile, OUTPUTP)
-
-%% get dependencies
-[fList,pList] = matlab.codetools.requiredFilesAndProducts('ADV_main.m');
-fid = fopen('/home/maxime/Work/advection/adv_files.txt','w');
-for kk = 1:length(fList)
-    fprintf(fid, '%s \n',fList{kk});
-end
-fclose(fid);
 
 %% Check files ECCO2
 typedate = 'CHK';
