@@ -1,0 +1,17 @@
+TI                      2018-09-03                  # YYYY-MM-DD
+TSI                     2018-09-05
+TF                      2018-09-10
+PECCO2                  /path/to/ECCO2/             # or C:\path\to\ECCO2\          for Windows 
+INPUTF                  /path/to/input.xyz          # or C:\path\to\input.xyz       for Windows
+OUTPUTP                 /path/to/result/folder/     # or C:\path\to\result\folder\  for Windows
+PSD                     /path/to/Stokesdrift/       # or C:\path\to\Stokesdrift\    for Windows
+TRK                     24                          # hours, 0 means no tracking    
+STOKESDRIFT             1                           # 1 = yes, 0 = no
+MODE                    MPD
+#sedimentmode_SED (autoset to 0 if MPD)
+GRZ                     1e-6
+RHOP                    2500
+#plasticmode_MicroPlasticDebris_MPD (autoset to 0 if SED)
+PVSINK                  0.016
+AGES                    10
+PPSINK                  0.5

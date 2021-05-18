@@ -23,7 +23,6 @@ disp(['configuration file: ', configfile])
 [R, PECCO2, TI, TF, TSI, INPUTF,...
     OUTPUTP, MODE, GRZ, RHOP, TRK, PSD,...
     STOKESDRIFT, AGES, PPSINK, PVSINK] = ADV_checkinput(configfile);
-    % STOKESDRIFT, AGES, PPSINK, PVSINK] = ADV_checkinput('ADV_config.txt');
 if R == 1
     error('Program stopped due to 1 error in inputs')
 elseif R > 1
