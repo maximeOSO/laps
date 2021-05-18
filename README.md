@@ -14,7 +14,8 @@ The results are saved in the folder you have specified in ```config_file.txt```.
 - COUNT3D: a Matlab 3D matrix (shaped as LON0 x LAT0 x dep), which shows the numbers of particles in each voxel. The voxels are geolocated by LON0, LAT0 and dep.
 
 If the particle tracking was enabled, the result is a ```TRK_*.txt``` file with 6 columns:
-date (YYYYMMDD) | hour (HHMMSS) | longitude | latitude | depth | ID
+
+``` date (YYYYMMDD) | hour (HHMMSS) | longitude | latitude | depth | ID ```
 
 ### Sea current velocities and Stokes drift
 LAPS reads the sea velocities provided by ECCO2 available through https://urs.earthdata.nasa.gov/ , you need to set a free account in order to download such data. You must at least have ECCO2 data. ECCO2 files have a 3-days resolution and there is one file per velocity component (East/North/Depth). Suppose you want to simulate some particle advection that occurred between 01 May 2016 and 03 May 2016, then you need to get 3 files: 
