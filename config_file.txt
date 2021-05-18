@@ -6,7 +6,7 @@ INPUTF                  /path/to/input.xyz          # or C:\path\to\input.xyz   
 OUTPUTP                 /path/to/result/folder/     # or C:\path\to\result\folder\  for Windows
 PSD                     /path/to/Stokesdrift/       # or C:\path\to\Stokesdrift\    for Windows
 TRK                     24                          # hours, 0 means no tracking    
-STOKESDRIFT             1                           # 1 = yes, 0 = no
+STOKESDRIFT             0                           # 1 = yes, 0 = no
 MODE                    MPD
 #sedimentmode_SED (autoset to 0 if MPD)
 GRZ                     1e-6

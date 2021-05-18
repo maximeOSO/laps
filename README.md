@@ -1,9 +1,9 @@
 # Laps
-LAPS stands for Lagrangian Advection of Particles at Sea. LAPS simulates the trajectories of particles at sea and is programmed with Matlab. It runs on any operating system. Use paths ``` /path/to/folder/ ``` for Linux/Mac and ``` C:\path\to\folder\ ``` for Windows. In it's most basic form, the only script to use is ```ADV_main('config_file.txt')```.
+LAPS stands for Lagrangian Advection of Particles at Sea. LAPS simulates the trajectories of particles at sea and is programmed with Matlab. It runs on any operating system. Use paths ``` /path/to/folder/ ``` for Linux/Mac and ``` C:\path\to\folder\ ``` for Windows.
 
 1. Download this Github repository and set it as your working directory in Matlab.
 2. Download the sea velocities you need (see next section).
-3. Edit your configuration file, one line per keyword (see keywords meanings and the example ```config_file.txt```).
+3. Edit your configuration file, one line per keyword (see keywords meanings below and the example ```config_file.txt```).
 4. Create an input file: an ascii file with four columns (see example ```test_label.xyz```).
 5. Run ```ADV_main('config_file.txt')``` with Matlab.
 
@@ -28,11 +28,11 @@ Optionally, if you intend to account for the Stokes drift effects (the influence
 ```
 WW3-GLOB-30M_201605_uss.nc
 ```
-Where do I get the files? At the time this README is written:
+Where to get the files? At the time this README is written:
 - ECCOS2: https://ecco.jpl.nasa.gov/drive/files/ECCO2/cube92_latlon_quart_90S90N/UVEL.nc/UVEL.1440x720x50.20160501.nc  (edit accordingly for VVEL and WVEL)
 - Stokes drift: ftp://ftp.ifremer.fr/ifremer/ww3/HINDCAST/GLOBAL/2016_ECMWF/uss/WW3-GLOB-30M_201605_uss.nc  (edit accordingly for the year)
 
-The Stokes drift velocity files must be converted to match the format of the ECCO2 files (it saves computation time). Use the code ```convSD_IFR2ECC_generic.m```, which must be edited to set your paths.
+The Stokes drift velocity files must be converted to match the format of the ECCO2 files. Use the code ```convSD_IFR2ECC_generic.m```, which must be edited to set your paths.
 
 ### Example of what should be written in a configuration file
 ```
