@@ -32,7 +32,7 @@ Where to get the files? At the time this README is written:
 - ECCOS2: https://ecco.jpl.nasa.gov/drive/files/ECCO2/cube92_latlon_quart_90S90N/UVEL.nc/UVEL.1440x720x50.20160501.nc  (edit accordingly for VVEL and WVEL)
 - Stokes drift: ftp://ftp.ifremer.fr/ifremer/ww3/HINDCAST/GLOBAL/2016_ECMWF/uss/WW3-GLOB-30M_201605_uss.nc  (edit accordingly for the year)
 
-The Stokes drift velocity files must be converted to match the format of the ECCO2 files. Use the code ```convSD_IFR2ECC_generic.m```, which must be edited to set your paths.
+The Stokes drift velocity files must be converted to match the format of the ECCO2 files. Use the code ```conv_W2E.m```, which must be edited to set your paths.
 
 ### Example of what should be written in a configuration file
 ```
