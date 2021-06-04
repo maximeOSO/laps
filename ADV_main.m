@@ -69,16 +69,16 @@ if mkfig == 1
     sC(sC == 0) = nan;
     % make map
     worldmap world
-    p1 = pcolorm(LAT0, LON0, sC);
+    p1 = pcolorm(LAT0, LON0, sC,'DisplayName','Particle count');
     hold on
     partexistid = find(~isnan(sC));
     load coastlines
     [latcells, loncells] = polysplit(coastlat, coastlon);
-    p2 = plotm(coastlat, coastlon,'k');
-    p3 = plotm(LAT0(partexistid),LON0(partexistid), '.');
+    p2 = plotm(coastlat, coastlon,'k','DisplayName','Coastline');
+    p3 = plotm(LAT0(partexistid),LON0(partexistid), '.','DisplayName','Particles');
     cb = colorbar;  
     cb.Label.String = 'Number of particles';
-    if TRK >= 0
+    if TRK > 0
         % load TRK
         fidpart = fopen(adv_trkHR);
         trk = textscan(fidpart, '%d %d %f %f %f %s');
@@ -89,9 +89,10 @@ if mkfig == 1
         ytrk = trk{4};
         ztrk = trk{5};
         ltrk = trk{6};
-        p4 = plotm(ytrk,xtrk,'k.');
+        p4 = plotm(ytrk,xtrk,'k.','DisplayName','track');
     end
-    p5 = plotm(y0,x0,'ro','MarkerFaceColor','r');
-    legend([p5 p4 p1], {'initial position', 'track', 'final position'})
+    p5 = plotm(y0,x0,'ro','MarkerFaceColor','r','DisplayName','initial position');
+    
+    %legend
 end
 end
