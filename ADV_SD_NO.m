@@ -253,21 +253,23 @@ while t < tf - dt && isempty(u_can_move) == 0
     ulo(iku0_apres) = 1;
     % Position in the matrix LON/LAT/DEPTH/TIME(=1)
     % U, V and W have the same format, hence same index for all three
-    idx0 = sub2ind(size(U), ulo, ula, 1+ula*0); % indice sur la premiere slice de la matrice, pour LAT --- 4 eme dim 1+ula*0
+    idx0 = sub2ind(size(U), ulo, ula, 1+ula*0); % index first slice of the matrix, for LAT --- 4st dim 1+ula*0
+    %%
     idx = sub2ind(size(U), ulo, ula, ud');
     ue = U(idx);
     ve = V(idx);
     we = W(idx); % Do not add vs yet to check if velocity ECCO2 == 0
     vel_mag = sqrt(ue.^2 + ve.^2 + we.^2);
     % Check stop condition
-    u_not_move = find(vel_mag' ==0); % velocity == 0: particle beached or doewn on the seafloor
-    u_can_move = find(vel_mag ~=0); % velcoity != 0: particle still in the current and moving
+    u_not_move = find(vel_mag' ==0 | z>edgesdep(end)-0.1); % velocity == 0: particle beached or down on the seafloor
+    u_can_move = find(vel_mag ~=0); % velocity != 0: particle still in the current and moving
     % update coordinates
     x = x + ue'*dts./(pi/180*rad_earth*sind(90-LAT(idx0)'));
     y = y + ve'*dts./(pi/180*rad_earth*sind(90-LAT(idx0)'));
     z(u_can_move) = z(u_can_move) + vs(u_can_move)*dts + we(u_can_move)'*dts; % z-axis positive downward
     z(u_not_move) = z(u_not_move); % depth does not change for beached or settled particles
     z(z<0) = 0.001; % if particle goes above the sea surface (just safety check in case W fields at the surface are <0), then they are put back in the water
+    z(z>edgesdep(end)) = edgesdep(end)-0.05; % if particle goes below the maximal depth defined by ECCO2, move it back to the seafloor to avoid histc error (no error with histcounts though)
     % special case -90/90 latitude
     x(y>90 | y<-90) = x(y>90 | y<-90)+180; % first change longitudes and then the latitude (or loose the info ><90)
     y(y>90)=180-y(y>90);

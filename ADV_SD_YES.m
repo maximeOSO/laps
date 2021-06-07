@@ -302,8 +302,8 @@ while t < tf-dt && isempty(u_can_move) == 0
     we = Wec(idx_EC); % no vertical velocity in Stokes Drift
     vel_mag = sqrt(Uec(idx_EC).^2 + Vec(idx_EC).^2 + Wec(idx_EC).^2);
     % Check stop condition
-    u_not_move = find(vel_mag' ==0); % velocity == 0: particle beached or doewn on the seafloor
-    u_can_move = find(vel_mag ~=0); % velcoity != 0: particle still in the current and moving
+    u_not_move = find(vel_mag' == 0 | z>edgesdep(end)-0.1); % velocity == 0: particle beached or down on the seafloor
+    u_can_move = find(vel_mag ~=0); % velocity != 0: particle still in the current and moving
     % Force total velocity to be 0 if ECCO2 velocity is 0
     % (forces SD coast to be the same as ECCO2's coast)
     ue(u_not_move) = 0;
@@ -315,6 +315,7 @@ while t < tf-dt && isempty(u_can_move) == 0
     z(u_can_move) = z(u_can_move) + vs(u_can_move)*dts + we(u_can_move)'*dts; % z-axis positive downward
     z(u_not_move) = z(u_not_move); % depth does not change for beached or settled particles
     z(z<0) = 0.001; % if particle goes above the sea surface (just safety check in case W fields at the surface are <0), then they are put back in the water
+    z(z>edgesdep(end)) = edgesdep(end)-0.05; % if particle goes below the maximal depth defined by ECCO2, move it back to the seafloor to avoid histc error (no error with histcounts though)
     % special case -90/90 latitude
     x(y>90 | y<-90) = x(y>90 | y<-90)+180; % first change longitudes and then the latitude (or loose the info ><90)
     y(y>90)=180-y(y>90);
