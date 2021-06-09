@@ -65,7 +65,7 @@ PECCO2		|path to ECCO2 files
 INPUTF 		|path to the file of particle input (an ascii file with 4 columns X, Y, Z(def = 0), ID: X = lon, Y = lat [degree.decimal], Z = depth [m], ID = a 3-letters identification
 OUTPUTP 	|path to result files
 PSD 		|path to Stokes drift files
-TRK 		|Record the path of the particles (not only their final position): 0 for no tracking or an integer meaning the tracking time step in hours
+TRK 		|Record the path of the particles (not only their final position): 0 for no tracking or the tracking time step in hours (can be less than 1)
 STOKESDRIFT 	|Activate Stokes drift: 0 or 1
 MODE            |Advection of sediment particles (=SED) or micro plastic debris (=MPD)
 
