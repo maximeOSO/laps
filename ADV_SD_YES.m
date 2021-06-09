@@ -160,7 +160,7 @@ while t < tf-dt && isempty(u_can_move) == 0
     if strcmpi(MODE,'MPD') == 1
         n_mpd_can_sink = find(age>AGES & sink==0); % older than age and should not be sinking already
         if ~isempty(n_mpd_can_sink)
-            % randolmy choose PSINK % of these MDP and set them to sink = 1
+            % randolmy choose PSINK % of these MPD and set them to sink = 1
             chgs = randi(length(n_mpd_can_sink), [round(length(n_mpd_can_sink)*PPSINK) 1]);
             sink(chgs) = 1;
             vs(chgs) = PVSINK; % set these partciles to sink at VSINK velocity

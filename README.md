@@ -46,7 +46,7 @@ PSD                     /path/to/Stokesdrift/     # or C:\path\to\Stokesdrift\  
 TRK                     24
 STOKESDRIFT             1
 MODE                    MPD
-#sedimentmode_SED (autoset to 0 if MDP)
+#sedimentmode_SED (autoset to 0 if MPD)
 GRZ                     1e-6
 RHOP                    2500
 #plasticmode_MicroPlasticDebris_MPD (autoset to 0 if SED)
@@ -80,6 +80,6 @@ RHOP            |Particle density in [kg.m-3]
 If MODE is MPD:
 Keyword | Description
 ------------ | -------------
-PVSINK          |The settling velocity of MDP (complicated to know, default value: 0.016 m.s-1 according to a bunch of papers: https://iopscience.iop.org/article/10.1088/1748-9326/aa8e8b/meta (mainly) https://www.sciencedirect.com/science/article/pii/S0269749116300264?via%3Dihub
-AGES            |The age in [days] after which MDP might start sinking
-PPSINK          |The probability [0=<p<=1] that the MDP older than AGES actually start sinking. (Old enough MDP are chosen randomly). The concept of MDP starting to settle with some probability after a certain age threshold is inspired from https://www.sciencedirect.com/science/article/pii/S0025326X18301000
+PVSINK          |The settling velocity of MPD (complicated to know, default value: 0.016 m.s-1 according to a bunch of papers: https://iopscience.iop.org/article/10.1088/1748-9326/aa8e8b/meta (mainly) https://www.sciencedirect.com/science/article/pii/S0269749116300264?via%3Dihub
+AGES            |The age in [days] after which MPD might start sinking
+PPSINK          |The probability [0=<p<=1] that the MPD older than AGES actually start sinking. (Old enough MPD are chosen randomly). The concept of MPD starting to settle with some probability after a certain age threshold is inspired from https://www.sciencedirect.com/science/article/pii/S0025326X18301000
