@@ -38,8 +38,8 @@ if isempty(id_sd) == 1; disp('Indication whether Stokes drift should be consider
 
 % also check the path , must end with / or \
 PECCO2 = valvar{id_pecco2};
-TI = datevec(datestr(valvar{id_ti},'yyyy-mm-dd'));
-TF = datevec(datestr(valvar{id_tf},'yyyy-mm-dd'));
+TI = datevec(datestr(valvar{id_ti},'yyyy-mm-dd HH:MM:SS'));
+TF = datevec(datestr(valvar{id_tf},'yyyy-mm-dd HH:MM:SS'));
 TSI = datevec(datestr(valvar{id_tsi},'yyyy-mm-dd'));
 INPUTF = valvar{id_inpf};
 OUTPUTP = valvar{id_outp};
@@ -75,9 +75,11 @@ if STOKESDRIFT == 1
     disp('With Stokes drift')
     if isempty(id_psd) == 1; disp('Stokes drift considered --> needs to set the path to Stokes drift velocity files "PSD" in the config file'); return; end
     PSD = valvar{id_psd};
-else
+elseif STOKESDRIFT == 0
     disp('No Stokes drift')
     PSD = 'NULL';
+else
+    disp('ERROR: STOKESDRIFT must be 0 or 1');
 end
 
 %% Check input
@@ -113,8 +115,8 @@ if ischar(MODE) == 0 || strcmpi(MODE,'SED') == 0 && strcmpi(MODE,'MPD') == 0
     disp('ERROR: MODE must be "SED" (sediment) or "MPD" (microplastic debris) '); R = R + 1;
 %    return
 end
-if mod(TRK,1) ~= 0 || TRK <0
-    disp('ERROR: TRK must be a postive integer number of hours (0 if no tracking) '); R = R + 1;
+if TRK <0    
+    disp('ERROR: TRK must be positive, in hours, can be < 1, eg 0.25 = 15 min tracking (0 if no tracking) '); R = R + 1;
 %    return
 end
 if size(TI,1) ~= 1 || size(TI,2) ~= 6

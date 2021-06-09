@@ -10,7 +10,7 @@ StDrfull_mth0 = datevec(StDrfull);
 StDrfull_mth = unique([StDrfull_mth0(:,1)*100 + StDrfull_mth0(:,2)]);
 
 % the user StDr time series fmt_SD_201801_1440x720xtime3h.nc
-Ufn0 = dir([PSD,'fmt*']);
+Ufn0 = dir([PSD,'fmt*.nc']);
 Ufn1 = char(Ufn0.name);
 UStDruser = str2num(Ufn1(:,8:11))*100 + str2num(Ufn1(:,12:13));
 

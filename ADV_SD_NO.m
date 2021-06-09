@@ -130,14 +130,16 @@ vs = [];
 age = [];
 sink = [];
 timetrack = [];
-t_prev = t0;
+t_prev = ti;
 %% Main advection
 disp(' ')
 disp('Advection')
 % Main advection, runs while:
 % - the time of "simulation stops" as not been reached
 % - particles can still move (not beached nor settled on the seafloor)
-while t < tf - dt && isempty(u_can_move) == 0
+t = ti; % set t back to ti, not t0 which was used only to get the first velocity file 
+
+while t <= tf - dt && isempty(u_can_move) == 0
     % age of the particle
     age = age + dts/86400; % age is in days
     % If microplastic debris
@@ -154,7 +156,7 @@ while t < tf - dt && isempty(u_can_move) == 0
     if TRK > 0
         TRK_day = TRK/24;
         if mod(a,TRK_day/dt) == 0
-            disp(['--- RECORD TRACK on ',datestr(t,'dd-mmm-yyyy HH'),' ---'])
+            %disp(['--- RECORD TRACK on ',datestr(t,'dd-mmm-yyyy HH:MM'),' ---'])
             if a == 0
                 xto = x0;
                 idp = (1:length(x0))';
@@ -177,7 +179,7 @@ while t < tf - dt && isempty(u_can_move) == 0
     % !!!!!!!!!!!!!!!!!!!!
     % injection every day
     % !!!!!!!!!!!!!!!!!!!!
-    if t<tsf && (t==t0 || floor(t)-floor(t_prev)==1) % every day
+    if t<=tsf && (t==ti || floor(t)-floor(t_prev)==1) % every day
         disp(['Injection: ' datestr(t,'dd/mm/yyyy'),' done on ',datestr(now,'dd/mm/yyyy HH:MM')])
         x = [x; x0];
         y = [y; y0];

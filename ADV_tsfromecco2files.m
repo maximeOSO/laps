@@ -8,21 +8,21 @@ restimeecco2 = 3; % new velocity field every restimeecco2 days
 ecco2full = datenum(time_first_ecco2):restimeecco2:(now-40);
 
 % the user U ecco2 time series
-Ufn0 = dir([PECCO2,'UVEL*']);
+Ufn0 = dir([PECCO2,'UVEL*.nc']);
 Ufn1 = char(Ufn0.name);
 Uecco2user = datenum([str2num(Ufn1(:,18:21)) str2num(Ufn1(:,22:23)) ...
     str2num(Ufn1(:,24:25)) zeros(size(Ufn1,1),1) ...
     zeros(size(Ufn1,1),1) zeros(size(Ufn1,1),1)]);
 
 % the user V ecco2 time series
-Vfn0 = dir([PECCO2,'VVEL*']);
+Vfn0 = dir([PECCO2,'VVEL*.nc']);
 Vfn1 = char(Vfn0.name);
 Vecco2user = datenum([str2num(Vfn1(:,18:21)) str2num(Vfn1(:,22:23)) ...
     str2num(Vfn1(:,24:25)) zeros(size(Vfn1,1),1) ...
     zeros(size(Vfn1,1),1) zeros(size(Vfn1,1),1)]);
 
 % the user W ecco2 time series
-Wfn0 = dir([PECCO2,'WVEL*']);
+Wfn0 = dir([PECCO2,'WVEL*.nc']);
 Wfn1 = char(Wfn0.name);
 Wecco2user = datenum([str2num(Wfn1(:,18:21)) str2num(Wfn1(:,22:23)) ...
     str2num(Wfn1(:,24:25)) zeros(size(Wfn1,1),1) ...
