@@ -38,8 +38,8 @@ if isempty(id_sd) == 1; disp('Indication whether Stokes drift should be consider
 
 % also check the path , must end with / or \
 PECCO2 = valvar{id_pecco2};
-TI = datevec(datestr(valvar{id_ti},'yyyy-mm-dd HH:MM:SS'));
-TF = datevec(datestr(valvar{id_tf},'yyyy-mm-dd HH:MM:SS'));
+TI = datevec(datestr(valvar{id_ti},'yyyy-mm-dd'));
+TF = datevec(datestr(valvar{id_tf},'yyyy-mm-dd'));
 TSI = datevec(datestr(valvar{id_tsi},'yyyy-mm-dd'));
 INPUTF = valvar{id_inpf};
 OUTPUTP = valvar{id_outp};
