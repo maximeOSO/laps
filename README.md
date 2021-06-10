@@ -62,7 +62,7 @@ TI		|Time when advection and injection start: YYYY-MM-DD
 TSI		|Time when injection stops: YYYY-MM-DD
 TF 		|Time when advection stops: YYYY-MM-DD
 PECCO2		|path to ECCO2 files
-INPUTF 		|path to the file of particle input (an ascii file with 4 columns X, Y, Z(def = 0), ID: X = lon, Y = lat [degree.decimal], Z = depth [m], ID = a 3-letters identification
+INPUTF 		|path to the file of particle input: an ascii file with 4 columns longitude (0; 360), latitude (-90; 90), depth (>=0), ID. Longitude and latitude are in decimal degrees, depth in m, ID = a 3-characters identification
 OUTPUTP 	|path to result files
 PSD 		|path to Stokes drift files
 TRK 		|Record the path of the particles (not only their final position): 0 for no tracking or the tracking time step in hours (can be less than 1)
