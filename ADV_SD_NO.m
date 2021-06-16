@@ -251,7 +251,7 @@ while t <= tf - dt && isempty(u_can_move) == 0
     ku0 = find(ulo == 0);
     iku0_avant = find(x>359.750);
     iku0_apres = find(x<0.125);
-    ulo(iku0_avant) = max(ulo);
+    ulo(iku0_avant) = length(edgeslon)-1;
     ulo(iku0_apres) = 1;
     % Position in the matrix LON/LAT/DEPTH/TIME(=1)
     % U, V and W have the same format, hence same index for all three
