@@ -346,7 +346,7 @@ disp(['Final positions: ', OUTPUTFgd])
 %% save tracking
 if TRK > 0
     timestr = datestr(dateshift(datetime(datestr(TRACK(:,1))), 'start', 'minute', 'nearest'), 'yyyymmdd HHMMSS');
-    n_step = length(TRACK)/length(x0);
+    n_step = size(TRACK, 1)/length(x0);
     L = {};
     for k = 1:n_step
         L = [L; label_orig];
@@ -354,7 +354,7 @@ if TRK > 0
     OUTPUTFtk = [OUTPUTP, 'TRK_' datestr(ti,'yyyymmdd'),'_',datestr(TSI,'yyyymmdd'),...
         '_',datestr(tf,'yyyymmdd'),'_',MODE, '_', configfile];
     fid = fopen(OUTPUTFtk,'w');
-    for k = 1:length(TRACK)
+    for k = 1:size(TRACK, 1)
         fprintf(fid,'%s %.6f %.6f %.3f %s%06d \n',timestr(k,:),TRACK(k,2:4), L{k}, TRACK(k,5));
     end
     fclose(fid);

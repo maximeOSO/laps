@@ -398,7 +398,7 @@ disp(['Final positions: ', OUTPUTFgd])
 if TRK > 0
     % TRACK(:,1) = dateshift(TRACK(:,1), 'start', 'minute', 'nearest'); % Round to the nearest minute
     timestr = datestr(dateshift(datetime(datestr(TRACK(:,1))), 'start', 'minute', 'nearest'), 'yyyymmdd HHMMSS');
-    n_step = length(TRACK)/length(x0);
+    n_step = size(TRACK, 1)/length(x0);
     L = {};
     for k = 1:n_step
         L = [L; label_orig];
