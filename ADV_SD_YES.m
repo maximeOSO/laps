@@ -1,6 +1,8 @@
 function [OUTPUTFgd, OUTPUTFtk] = ADV_SD_YES(configfile, PECCO2, PSD, TI, TSI, TF, ...
     INPUTF, OUTPUTP, MODE, GRZ, RHOP, TRK, AGES, PPSINK, PVSINK)
 %%% LAPS with Stokes drift velocities
+%%% MIT License, copyright (c) 2021 Maxime Mouyen, https://github.com/maximeOSO/laps#license
+
 
 %%% INPUT: cf config file
 

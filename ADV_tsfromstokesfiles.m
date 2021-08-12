@@ -2,6 +2,8 @@ function [tsFMT, tsvrai]  = ADV_tsfromstokesfiles(PSD, TI, TF, restime,typedate)
 %%% Makes a time series of the Stokes drift files needed 
 %%% for the simulation (use TI, TF and the files names)
 
+%%% MIT License, copyright (c) 2021 Maxime Mouyen, https://github.com/maximeOSO/laps#license
+
 % the full time series of SD as online
 time_first_StDr = [1992 01 01 0 0 0];
 restimeStDr = 1/8; % new velocity field every restimeStDr days

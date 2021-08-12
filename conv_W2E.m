@@ -3,6 +3,8 @@ close all
 format long
 clc
 
+%%% MIT License, copyright (c) 2021 Maxime Mouyen, https://github.com/maximeOSO/laps#license
+
 %%% Read netcdf file
 % This function transform the netcdf files of the Stokes drift velocity
 % fields into netcdf files at the same format and spatial resolution of the

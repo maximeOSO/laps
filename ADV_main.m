@@ -1,5 +1,7 @@
 function ADV_main(configfile)
 %%% Main function of the LAPS program
+%%% MIT License, copyright (c) 2021 Maxime Mouyen, https://github.com/maximeOSO/laps#license
+
 
 %%% INPUT: see configfile
 

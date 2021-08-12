@@ -2,6 +2,8 @@ function [tsFMT, tsvrai]  = ADV_tsfromecco2files(PECCO2, TI, TF, typedate)
 %%% Makes a time series of the ECCO2 files needed 
 %%% for the simulation (use TI, TF and the files names)
 
+%%% MIT License, copyright (c) 2021 Maxime Mouyen, https://github.com/maximeOSO/laps#license
+
 % the full time series of ECCO2 as online
 time_first_ecco2 = [1992 01 02 0 0 0];
 restimeecco2 = 3; % new velocity field every restimeecco2 days
