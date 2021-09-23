@@ -1,4 +1,7 @@
 # Laps
+
+[![DOI](https://zenodo.org/badge/366800769.svg)](https://zenodo.org/badge/latestdoi/366800769)
+
 LAPS stands for Lagrangian Advection of Particles at Sea. LAPS simulates the trajectories of particles at sea and is programmed with Matlab. It runs on any operating system. Use paths ``` /path/to/folder/ ``` for Linux/Mac and ``` C:\path\to\folder\ ``` for Windows.
 
 1. Download this Github repository and set it as your working directory in Matlab.
